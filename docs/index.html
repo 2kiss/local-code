@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Local Code</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:        oklch(0.155 0.009 64);
+    --bg-1:      oklch(0.195 0.011 64);
+    --bg-2:      oklch(0.225 0.012 64);
+    --border:    oklch(0.300 0.012 64);
+    --border-soft: oklch(0.265 0.011 64);
+    --hi:  oklch(0.960 0.010 75);
+    --mid: oklch(0.740 0.014 75);
+    --lo:  oklch(0.560 0.013 75);
+    --accent:      oklch(0.770 0.150 45);
+    --accent-deep: oklch(0.700 0.155 45);
+    --accent-soft: oklch(0.770 0.150 45 / 0.12);
+    --accent-line: oklch(0.770 0.150 45 / 0.30);
+    --on-accent:   oklch(0.205 0.040 45);
+    --good: oklch(0.770 0.115 155);
+    --ui: 'DM Sans', system-ui, sans-serif;
+    --mono: 'DM Mono', ui-monospace, monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--hi);font-family:var(--ui);
+    -webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+
+  nav{display:flex;align-items:center;gap:14px;padding:22px 0}
+  .brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:15px;letter-spacing:-0.01em}
+  .logo{width:26px;height:26px;border-radius:9px;
+    background:linear-gradient(150deg,var(--accent),var(--accent-deep));
+    display:grid;place-items:center;box-shadow:0 6px 18px -8px var(--accent-line)}
+  .logo::after{content:"";width:9px;height:9px;border-radius:3px;background:var(--on-accent)}
+  .nav-sp{flex:1}
+  .nav-link{color:var(--mid);font-size:13.5px;display:inline-flex;align-items:center;gap:7px;
+    padding:8px 14px;border-radius:10px;border:1px solid var(--border-soft);transition:.15s}
+  .nav-link:hover{color:var(--hi);background:var(--bg-1);border-color:var(--border)}
+
+  header{padding:70px 0 24px}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;color:var(--accent);
+    letter-spacing:.04em;margin-bottom:20px;display:inline-flex;align-items:center;gap:8px}
+  .eyebrow .pulse{width:7px;height:7px;border-radius:50%;background:var(--good);
+    box-shadow:0 0 0 4px oklch(0.770 0.115 155 / 0.16)}
+  h1{font-size:clamp(34px,5.6vw,58px);line-height:1.05;letter-spacing:-0.03em;font-weight:700;max-width:18ch}
+  .sub{font-size:clamp(16px,1.9vw,19px);color:var(--mid);max-width:56ch;margin-top:22px;line-height:1.55}
+  .cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;align-items:center}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-weight:600;font-size:14.5px;
+    padding:13px 22px;border-radius:13px;cursor:pointer;transition:.15s;border:1px solid transparent}
+  .btn.primary{background:var(--accent);color:var(--on-accent);box-shadow:0 10px 26px -12px var(--accent-line)}
+  .btn.primary:hover{background:var(--accent-deep);transform:translateY(-1px)}
+  .btn.ghost{background:transparent;border-color:var(--border);color:var(--mid)}
+  .btn.ghost:hover{color:var(--hi);background:var(--bg-1)}
+  .hint{font-family:var(--mono);font-size:12px;color:var(--lo)}
+
+  .demo{margin:54px 0 8px}
+  .demo-frame{border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;
+    background:var(--bg-1);box-shadow:0 40px 90px -50px oklch(0 0 0 / 0.95);line-height:0}
+  .demo video{width:100%;height:auto;display:block}
+  .demo-cap{font-family:var(--mono);font-size:12px;color:var(--lo);margin-top:12px;text-align:center;line-height:1.5}
+
+  section{padding:84px 0}
+  .kicker{font-family:var(--mono);font-size:12.5px;color:var(--accent);letter-spacing:.04em;margin-bottom:14px}
+  h2{font-size:clamp(25px,3.2vw,34px);letter-spacing:-0.025em;font-weight:700;max-width:22ch}
+  .lead{color:var(--mid);font-size:16.5px;max-width:60ch;margin-top:14px}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(244px,1fr));gap:16px;margin-top:42px}
+  .card{background:var(--bg-1);border:1px solid var(--border-soft);border-radius:16px;padding:22px 22px;transition:.18s}
+  .card:hover{border-color:var(--border);background:var(--bg-2)}
+  .card .ic{width:36px;height:36px;border-radius:10px;background:var(--accent-soft);
+    display:grid;place-items:center;color:var(--accent);margin-bottom:15px}
+  .card h3{font-size:16px;font-weight:600;letter-spacing:-0.01em}
+  .card p{color:var(--mid);font-size:14px;margin-top:7px;line-height:1.6}
+
+  .stack{display:flex;flex-direction:column;gap:1px;margin-top:42px;
+    border:1px solid var(--border-soft);border-radius:16px;overflow:hidden;background:var(--border-soft)}
+  .row{display:flex;align-items:center;gap:18px;padding:20px 24px;background:var(--bg-1)}
+  .row .n{font-family:var(--mono);font-size:13px;color:var(--accent);flex:0 0 auto;width:30px}
+  .row .body h4{font-size:15px;font-weight:600}
+  .row .body p{color:var(--mid);font-size:14px;margin-top:3px}
+  .row .tag{margin-left:auto;font-family:var(--mono);font-size:11.5px;color:var(--lo);
+    border:1px solid var(--border-soft);padding:5px 10px;border-radius:8px;flex:0 0 auto}
+
+  .band{border:1px solid var(--border-soft);background:var(--bg-1);border-radius:18px;
+    padding:40px 40px;display:flex;gap:28px;align-items:flex-start;flex-wrap:wrap}
+  .band h3{font-size:clamp(20px,2.6vw,26px);font-weight:700;letter-spacing:-0.02em;flex:1;min-width:260px;line-height:1.25}
+  .band p{color:var(--mid);max-width:42ch;font-size:15px}
+
+  footer{border-top:1px solid var(--border-soft);padding:36px 0 56px;margin-top:30px}
+  .foot{display:flex;align-items:center;gap:16px;flex-wrap:wrap;color:var(--lo);font-size:13px}
+  .foot .sp{flex:1}
+  .foot a{color:var(--mid)}.foot a:hover{color:var(--hi)}
+  .lic{font-family:var(--mono);font-size:11.5px;color:var(--lo);margin-top:14px}
+  svg{display:block}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <nav>
+    <a class="brand" href="#"><span class="logo"></span>Local&nbsp;Code</a>
+    <div class="nav-sp"></div>
+    <a class="nav-link" href="#features">Возможности</a>
+    <a class="nav-link" href="#how">Как работает</a>
+    <a class="nav-link" href="https://github.com" target="_blank" rel="noopener">
+      <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      GitHub
+    </a>
+  </nav>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow"><span class="pulse"></span>десктопный агент для кода</div>
+    <h1>Кодинг-агент, который работает с твоей моделью.</h1>
+    <p class="sub">Подключаешь модель — а дальше агент сам читает, правит и запускает код в проекте, ищет по дереву и ведёт git. Перед изменениями спрашивает.</p>
+    <div class="cta">
+      <a class="btn primary" href="#">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 11.5 3.5 7l1.4-1.4L7 7.7V0h2v7.7l2.1-2.1L12.5 7 8 11.5zM2 14h12v2H2v-2z"/></svg>
+        Скачать для Windows
+      </a>
+      <a class="btn ghost" href="https://github.com" target="_blank" rel="noopener">Открыть на GitHub</a>
+      <span class="hint">ядро на&nbsp;Rust · интерфейс на&nbsp;Flutter</span>
+    </div>
+
+    <div class="demo">
+      <div class="demo-frame">
+        <video autoplay muted loop playsinline poster="assets/demo-poster.jpg">
+          <source src="assets/demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="demo-cap">реальная сессия: создал файл, запустил, показал результат</div>
+    </div>
+  </header>
+</div>
+
+<div class="wrap">
+  <section id="features">
+    <div class="kicker">инструменты</div>
+    <h2>Агент с инструментами, а не просто чат.</h2>
+    <p class="lead">Он работает с проектом напрямую — файлы, шелл, поиск, git — и каждое изменение проходит через подтверждение, которое контролируешь ты.</p>
+
+    <div class="grid">
+      <div class="card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 4h7l3 3v9H4z"/><path d="M11 4v3h3"/></svg></div>
+        <h3>Файлы и шелл</h3>
+        <p>Читает, пишет и правит файлы, запускает шелл хоста, ищет по проекту через glob и grep.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="2.4"/><circle cx="6" cy="15" r="2.4"/><circle cx="14" cy="10" r="2.4"/><path d="M6 8.4v4.2M8.2 7.2l3.8 1.8"/></svg></div>
+        <h3>Git как инструмент</h3>
+        <p>Модель сама делает status, commit, push, pull и log — git это её инструмент.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 2l7 3v5c0 4-3 6.5-7 8-4-1.5-7-4-7-8V5z"/><path d="M7 10l2 2 4-4"/></svg></div>
+        <h3>Режимы доступа</h3>
+        <p>Bypass, accept-edits или plan. Изменяющие действия ждут твоего подтверждения.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 10a7 7 0 1 1 2 5"/><path d="M3 15v-4h4"/></svg></div>
+        <h3>Откат</h3>
+        <p>Коммиты агента становятся точками отката. Вернуть рабочее дерево и переписку к нужному моменту.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 3h9l3 3v11H4z"/><path d="M7 8h6M7 11h6M7 14h4"/></svg></div>
+        <h3>Память проекта</h3>
+        <p>Заметки, привязанные к проекту, лежат обычными файлами и подхватываются в новых чатах.</p>
+      </div>
+      <div class="card">
+        <div class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="14" height="12" rx="2"/><path d="M3 8h14M7 12h6"/></svg></div>
+        <h3>Песочница</h3>
+        <p>Запусти агента в одноразовой папке, не трогая реальный проект.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="wrap">
+  <section id="how" style="padding-top:16px">
+    <div class="kicker">как работает</div>
+    <h2>Три части, всё на твоём железе.</h2>
+    <div class="stack">
+      <div class="row">
+        <span class="n">01</span>
+        <div class="body"><h4>Модель</h4><p>Локальный сервер с твоей моделью — llama.cpp или совместимый.</p></div>
+        <span class="tag">localhost:8080</span>
+      </div>
+      <div class="row">
+        <span class="n">02</span>
+        <div class="body"><h4>Ядро</h4><p>Движок на Rust крутит цикл агента, инструменты и подтверждения.</p></div>
+        <span class="tag">Rust</span>
+      </div>
+      <div class="row">
+        <span class="n">03</span>
+        <div class="body"><h4>Приложение</h4><p>Нативное окно — проекты, чаты, диффы и git рядом.</p></div>
+        <span class="tag">Flutter</span>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="#"><span class="logo" style="width:22px;height:22px"></span>Local Code</a>
+      <div class="sp"></div>
+      <a href="#features">Возможности</a>
+      <a href="#how">Как работает</a>
+      <a href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+    </div>
+    <div class="lic">© 2026 · все права защищены · использование, копирование и распространение кода запрещено</div>
+  </div>
+</footer>
+
+</body>
+</html>
