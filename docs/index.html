@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Local Code</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/icon-192.png">
+<link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -35,10 +38,8 @@
 
   nav{display:flex;align-items:center;gap:14px;padding:22px 0}
   .brand{display:flex;align-items:center;gap:11px;font-weight:600;font-size:15px;letter-spacing:-0.01em}
-  .logo{width:26px;height:26px;border-radius:9px;
-    background:linear-gradient(150deg,var(--accent),var(--accent-deep));
-    display:grid;place-items:center;box-shadow:0 6px 18px -8px var(--accent-line)}
-  .logo::after{content:"";width:9px;height:9px;border-radius:3px;background:var(--on-accent)}
+  .logo{width:34px;height:34px;border-radius:9px;
+    background:url(assets/logo-app.png) center/cover no-repeat}
   .nav-sp{flex:1}
   .nav-link{color:var(--mid);font-size:13.5px;display:inline-flex;align-items:center;gap:7px;
     padding:8px 14px;border-radius:10px;border:1px solid var(--border-soft);transition:.15s}
@@ -208,7 +209,7 @@
 <footer>
   <div class="wrap">
     <div class="foot">
-      <a class="brand" href="#"><span class="logo" style="width:22px;height:22px"></span>Local Code</a>
+      <a class="brand" href="#"><span class="logo" style="width:29px;height:29px"></span>Local Code</a>
       <div class="sp"></div>
       <a href="#features">Возможности</a>
       <a href="#how">Как работает</a>
